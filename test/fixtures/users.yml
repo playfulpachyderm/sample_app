@@ -1,1 +1,4 @@
-# hashtag empty
+alessio:
+  name: Alessio Magnus
+  email: alessio@dude.com
+  password_digest: <%= User.digest('password') %>
