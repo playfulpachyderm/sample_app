@@ -37,4 +37,24 @@ class UsersControllerTest < ActionController::TestCase
     assert flash.empty?
     assert_redirected_to root_url
   end
+
+  test "should redirect from index page if not logged in" do
+    get :index
+    assert_redirected_to login_url
+  end
+
+  test "should redirect from destroy if not logged in" do
+    assert_no_difference "User.count" do
+      delete :destroy, id: @user
+    end
+    assert_redirected_to login_url
+  end
+
+  test "should redirect from destroy if not admin" do
+    log_in_as(@idiot)
+    assert_no_difference "User.count" do
+      delete :destroy, id: @user
+    end
+    assert_redirected_to root_url
+  end
 end

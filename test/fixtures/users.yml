@@ -2,8 +2,17 @@ alessio:
   name: Alessio Magnus
   email: alessio@dude.com
   password_digest: <%= User.digest('password') %>
+  admin: true
 
 dudio:
   name: Dudio Palipour
   email: dudio@palipour.com
   password_digest: <%= User.digest('password') %>
+
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name:  <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>
