@@ -1,0 +1,15 @@
+one:
+  follower: dudio
+  followed: alessio
+
+two:
+  follower: mozart
+  followed: alessio
+
+three:
+  follower: alessio
+  followed: mozart
+
+four:
+  follower: alessio
+  followed: potato

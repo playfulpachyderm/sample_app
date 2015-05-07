@@ -81,4 +81,37 @@ class UserTest < ActiveSupport::TestCase
       @user.destroy
     end
   end
+
+  test "should follow and unfollow a user" do
+    alessio = users(:alessio)
+    idiot = users(:dudio)
+    assert_not alessio.following?(idiot)
+    alessio.follow(idiot)
+    assert alessio.following?(idiot)
+    assert idiot.followers.include?(alessio)
+    alessio.unfollow(idiot)
+    assert_not alessio.following?(idiot)
+  end
+
+  test "feed should have the right posts" do
+    alessio = users(:alessio)
+    mozart = users(:mozart)
+    dudio = users(:dudio)
+
+    # I followed mozart, so I should see his
+    mozart.microposts.each do |post|
+      assert alessio.feed.include?(post)
+    end
+
+    # I should see mine
+    alessio.microposts.each do |post|
+      assert alessio.feed.include?(post)
+    end
+
+    # I shouldn't see dudio's (he's an idiot)
+    dudio.microposts.each do |post|
+      assert_not alessio.feed.include?(post)
+    end
+
+  end
 end

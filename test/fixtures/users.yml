@@ -11,6 +11,18 @@ dudio:
   password_digest: <%= User.digest('password') %>
   activated: true
 
+mozart:
+  name: Mozart Beethoven
+  email: mozart@yo.com
+  password_digest: <%= User.digest('password') %>
+  activated: true
+
+potato:
+  name: Fish R. Dumb
+  email: vorpent@cure.com
+  password_digest: <%= User.digest('password') %>
+  activated: true
+
 
 <% 30.times do |n| %>
 user_<%= n %>:
